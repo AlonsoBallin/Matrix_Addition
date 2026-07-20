@@ -3,21 +3,23 @@ public class ThreadOperation extends Thread {
     private int[][] A; 
     private int[][]B; 
     private int[][] C; 
-    private String thread; 
+    private String quadrant; 
 
-    public ThreadOperation(int[][] A, int[][] B, int[][] C, String thread) { 
+    //Constructor 
+    public ThreadOperation(int[][] A, int[][] B, int[][] C, String quadrant) { 
         this.A = A; 
         this.B = B; 
         this.C = C; 
-        this.thread = thread; 
+        this.quadrant = quadrant; 
     } 
 
+    //Run Method for rows and columns 
     @Override 
     public void run() { 
         int rows = A.length; 
         int columns = A[0].length; 
 
-        int[] index = getQuadrantIndex(rows, columns, thread); 
+        int[] index = getQuadrantIndex(rows, columns, quadrant); 
 
         int startRow = index[0]; 
         int endRow = index[1]; 
@@ -30,6 +32,40 @@ public class ThreadOperation extends Thread {
             } 
         } 
     } 
+
+    //Getting the quadrant 
+    public int[] getQuadrantIndex(int rows, int columns, String thread) { 
+        int midRow = rows / 2; 
+        int midColumn = columns / 2; 
+
+        int[] index = new int[4]; 
+
+        if(quadrant.equals("Upper right")){ 
+            index[0] = 0; 
+            index[1] = midRow; 
+            index[2] = 0; 
+            index[3] = midColumn - 1; 
+        } 
+        else if(quadrant.equals("Upper Left")){ 
+            index[0] = 0; 
+            index[1] = midRow - 1; 
+            index[2] = 0; 
+            index[3] = midColumn - 1; 
+        } 
+        else if(quadrant.equals("Lower left")){ 
+            index[0] = midRow; 
+            index[1] = rows - 1; 
+            index[2] = 0; 
+            index[3] = midColumn - 1; 
+        } 
+        else if(quadrant.equals("Lower right")){ 
+            index[0] = midRow; 
+            index[1] = rows - 1; 
+            index[2] = midColumn; 
+            index[3] = columns - 1; 
+        } 
+        return index; 
+    }
 
 
 }

@@ -1,6 +1,10 @@
 /*
-This code is provided to give you a
-starting place. It should be modified.
+Alonso Reyes Dominguez 
+07/17/2026 
+Purpose: Adds up two quadrants of a matrix using threads.  
+Sources: 
+		Got help from AI on calculating the quadrant indexs as I kept messing 
+		it up. 
 */
 import java.io.IOException;
 import java.nio.file.Path;
@@ -37,7 +41,7 @@ public class Main
 		int[][] toReturn = new int[rows][columns];
 		
 		for(int i = 0; i < rows; i++){ 
-			for(int j = 0; j < columns; j++) { 
+			for(int j = 0; j < columns; j++) {  
 				toReturn[i][j] = inFile.nextInt();
 			}
 		} 

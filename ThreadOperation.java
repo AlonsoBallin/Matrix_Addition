@@ -26,8 +26,8 @@ public class ThreadOperation extends Thread {
         int startColumn = index[2]; 
         int endColumn = index[3]; 
 
-        for(int i = startRow; i < endRow; i++) { 
-            for(int j = startColumn; j < endColumn; j++) { 
+        for(int i = startRow; i <= endRow; i++) { 
+            for(int j = startColumn; j <= endColumn; j++) { 
                 C[i][j] = A[i][j] + B[i][j]; 
             } 
         } 
@@ -40,17 +40,17 @@ public class ThreadOperation extends Thread {
 
         int[] index = new int[4]; 
 
-        if(quadrant.equals("Upper right")){ 
+        if(quadrant.equals("Upper left")){ 
             index[0] = 0; 
             index[1] = midRow; 
             index[2] = 0; 
             index[3] = midColumn - 1; 
         } 
-        else if(quadrant.equals("Upper Left")){ 
+        else if(quadrant.equals("Upper right")){ 
             index[0] = 0; 
             index[1] = midRow - 1; 
-            index[2] = 0; 
-            index[3] = midColumn - 1; 
+            index[2] = midColumn; 
+            index[3] = columns - 1; 
         } 
         else if(quadrant.equals("Lower left")){ 
             index[0] = midRow; 

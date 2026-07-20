@@ -32,8 +32,25 @@ public class Main
 		int[][] B = readInMatrix(rows, columns, inFile);  
 		int[][] C = new int[rows][columns]; 
 
-		print2dArray(A);   
-		
+		ThreadOperation upperLeft = new ThreadOperation(A, B, C, "Upper left"); 
+		ThreadOperation upperRight = new ThreadOperation(A, B, C, "Upper right"); 
+		ThreadOperation lowerLeft = new ThreadOperation(A, B, C, "Lower left");
+		ThreadOperation lowerRight = new ThreadOperation(A, B, C, "Lower right");
+
+		upperLeft.start();
+		upperRight.start();
+		lowerLeft.start();
+		lowerRight.start(); 
+
+		System.out.println("Matrix A:"); 
+		print2dArray(A); 
+
+		System.out.println("Matrix B:"); 
+		print2dArray(B); 
+
+		System.out.println("Matrix C:"); 
+		print2dArray(C); 
+
 	}	
 
 	public static int[][] readInMatrix(int rows, int columns, Scanner inFile)
@@ -53,7 +70,7 @@ public class Main
 	{
 		for(int i = 0; i < matrix.length; i++){  
 			for(int j = 0; j < matrix[i].length; j++){ 
-				System.out.print(matrix[i][j] + " ");    
+				System.out.printf("%5d", matrix[i][j]);    
 			}   
 			System.out.println(); 
 		}
